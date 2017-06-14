@@ -1,5 +1,5 @@
 from assertions import printErrors, assertEqual
-from poker import cardNumber, cardSuit, highestCard, twoOfAKind
+from poker import cardNumber, cardSuit, highestCard, twoOfAKind, threeOfAKind, fourOfAKind, twoPair
 # Red -> Green -> Refactor
 assertEqual(2, cardNumber("2H"))
 assertEqual(3, cardNumber("3H"))
@@ -22,5 +22,15 @@ assertEqual("AH", highestCard(["TH", "3S", "AH", "5H", "6H"]))
 
 assertEqual(3, twoOfAKind(["3H", "3S", "AH", "5H", "6H"]))
 assertEqual(14, twoOfAKind(["3H", "AS", "AH", "5H", "6H"]))
+assertEqual(None, twoOfAKind(["3H", "7S", "AH", "5H", "6H"]))
+
+assertEqual(3, threeOfAKind(["3H", "3S", "3H", "5H", "6H"]))
+
+assertEqual(3, fourOfAKind(["3H", "3S", "3H", "3H", "6H"]))
+
+assertEqual((3,4), twoPair(["3H", "3S", "4H", "4S", "6H"]))
+assertEqual((4,6), twoPair(["6H", "6S", "4H", "4S", "AH"]))
+assertEqual(None, twoPair(["5H", "6S", "4H", "4S", "AH"]))
+# assertEqual(None, twoPair(["5H", "6S", "7H", "4S", "AH"]))
 
 printErrors()
