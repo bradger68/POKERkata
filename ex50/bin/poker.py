@@ -4,16 +4,25 @@ def highestCard(cards):
 	sortedCards = sorted(cards, key=cardNumber)
 	return sortedCards[4]
 	
+def straight(cards):
+	sortedCards = sorted(cards, key=cardNumber)
+	expectedNextCard = cardNumber(sortedCards[0])+1
+	for card in sortedCards:
+		if expectedNextCard == cardNumber(card) + 1:
+		    expectedNextCard = expectedNextCard + 1
+		else:
+			return None
+	theHighestCard = highestCard(cards)
+	return cardNumber(theHighestCard)
+
 def twoPair(cards):
-	count = 0
 	firstAsk = anyOfAKind(cards, 2, False) 
-	if (firstAsk > 0):
-		count = count + 1
+	if (firstAsk != None):
 		secondAsk = anyOfAKind(cards, 2, True) 
-		if (secondAsk > 1):
-			count = count + 1
-	return (firstAsk, secondAsk)
-	
+		if (secondAsk != None and secondAsk != firstAsk):
+			return (firstAsk, secondAsk)
+	return None
+		
 def anyOfAKind(cards, desiredSize, reverse):
 	cardCount = [0]*15
 	for card in cards:
