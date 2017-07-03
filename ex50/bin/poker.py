@@ -22,6 +22,23 @@ def twoPair(cards):
 		if (secondAsk != None and secondAsk != firstAsk):
 			return (firstAsk, secondAsk)
 	return None
+	
+#def fullHouse(cards):
+#	if anyOfAKind(cards, 3, False) == True: 
+#		Value3OfAKind == anyOfAKind([0])
+#		ThreeCards = anyOfAKind(cards, 3, False)
+#		if anyOfAKind(cards, 2, False) == True and anyOfAKind(cards, 2, False) != ThreeCards:
+#			return Value3OfAKind
+			
+	
+def flush(cards): 
+	sortBySuit = sorted(cards, key=cardSuit)
+	initialCardSuit = cardSuit(sortBySuit[0])
+	finalCardSuit = cardSuit(sortBySuit[4])
+	if initialCardSuit == finalCardSuit:
+		return cardNumber(highestCard(cards))
+	else: return None
+	
 		
 def anyOfAKind(cards, desiredSize, reverse):
 	cardCount = [0]*15

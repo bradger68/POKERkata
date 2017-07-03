@@ -1,5 +1,5 @@
 from assertions import printErrors, assertEqual
-from poker import cardNumber, cardSuit, highestCard, twoOfAKind, threeOfAKind, fourOfAKind, twoPair, straight
+from poker import cardNumber, cardSuit, highestCard, twoOfAKind, threeOfAKind, fourOfAKind, twoPair, straight, flush
 # Red -> Green -> Refactor
 assertEqual(2, cardNumber("2H"))
 assertEqual(3, cardNumber("3H"))
@@ -36,5 +36,11 @@ assertEqual(None, twoPair(["5H", "6S", "7H", "4S", "AH"]))
 
 assertEqual(6, straight(["5H", "3S", "2H", "6H", "4H"]))
 assertEqual(None, straight(["5H", "3S", "8H", "QH", "JH"]))
+
+#assertEqual(3, fullHouse(["3S", "3D", "3H", "2S", "2C"]))
+
+assertEqual(10, flush(["7H", "2H", "3H", "8H", "TH"]))
+assertEqual(10, flush(["7H", "2H", "TH", "3H", "8H"]))
+assertEqual(None, flush(["7S", "2H", "TH", "3H", "8H"]))
 
 printErrors()
