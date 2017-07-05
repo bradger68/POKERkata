@@ -4,6 +4,16 @@ def highestCard(cards):
 	sortedCards = sorted(cards, key=cardNumber)
 	return sortedCards[4]
 	
+
+def twoPair(cards):
+	firstAsk = anyOfAKind(cards, 2, False) 
+	if (firstAsk != None):
+		secondAsk = anyOfAKind(cards, 2, True) 
+		if (secondAsk != None and secondAsk != firstAsk):
+			return (firstAsk, secondAsk)
+	return None
+
+
 def straight(cards):
 	sortedCards = sorted(cards, key=cardNumber)
 	expectedNextCard = cardNumber(sortedCards[0])+1
@@ -13,24 +23,9 @@ def straight(cards):
 		else:
 			return None
 	theHighestCard = highestCard(cards)
-	return cardNumber(theHighestCard)
+	return cardNumber(theHighestCard)	
 
-def twoPair(cards):
-	firstAsk = anyOfAKind(cards, 2, False) 
-	if (firstAsk != None):
-		secondAsk = anyOfAKind(cards, 2, True) 
-		if (secondAsk != None and secondAsk != firstAsk):
-			return (firstAsk, secondAsk)
-	return None
-	
-#def fullHouse(cards):
-#	if anyOfAKind(cards, 3, False) == True: 
-#		Value3OfAKind == anyOfAKind([0])
-#		ThreeCards = anyOfAKind(cards, 3, False)
-#		if anyOfAKind(cards, 2, False) == True and anyOfAKind(cards, 2, False) != ThreeCards:
-#			return Value3OfAKind
-			
-	
+
 def flush(cards): 
 	sortBySuit = sorted(cards, key=cardSuit)
 	initialCardSuit = cardSuit(sortBySuit[0])
@@ -39,7 +34,23 @@ def flush(cards):
 		return cardNumber(highestCard(cards))
 	else: return None
 	
+	
+def straightFlush(cards):
+	#is there a way to have it run flush and straight simultaneously without rewriting them?
+	#verify they are all the same suit, then verify they are consecutive
+	#import flush and straight
+	if initialCardSuit == finalCardSuit and 
+	
 		
+
+#def fullHouse(cards):
+#	if anyOfAKind(cards, 3, False) == True: 
+#		Value3OfAKind == anyOfAKind([0])
+#		ThreeCards = anyOfAKind(cards, 3, False)
+#		if anyOfAKind(cards, 2, False) == True and anyOfAKind(cards, 2, False) != ThreeCards:
+#			return Value3OfAKind
+
+
 def anyOfAKind(cards, desiredSize, reverse):
 	cardCount = [0]*15
 	for card in cards:
