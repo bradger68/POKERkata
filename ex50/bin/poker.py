@@ -1,9 +1,10 @@
 import math 
 
+# Domain Logic 
+
 def highestCard(cards):
 	sortedCards = sorted(cards, key=cardNumber)
 	return sortedCards[4]
-	
 
 def twoPair(cards):
 	firstAsk = anyOfAKind(cards, 2, False) 
@@ -11,8 +12,6 @@ def twoPair(cards):
 		secondAsk = anyOfAKind(cards, 2, True) 
 		if (secondAsk != None and secondAsk != firstAsk):
 			return (firstAsk, secondAsk)
-	return None
-
 
 def straight(cards):
 	sortedCards = sorted(cards, key=cardNumber)
@@ -32,24 +31,17 @@ def flush(cards):
 	finalCardSuit = cardSuit(sortBySuit[4])
 	if initialCardSuit == finalCardSuit:
 		return cardNumber(highestCard(cards))
-	else: return None
 	
 	
 def straightFlush(cards):
-	#is there a way to have it run flush and straight simultaneously without rewriting them?
-	#verify they are all the same suit, then verify they are consecutive
-	#import flush and straight
-	if initialCardSuit == finalCardSuit and 
+	if flush(cards):
+		return straight(cards)
 	
-		
 
-#def fullHouse(cards):
-#	if anyOfAKind(cards, 3, False) == True: 
-#		Value3OfAKind == anyOfAKind([0])
-#		ThreeCards = anyOfAKind(cards, 3, False)
-#		if anyOfAKind(cards, 2, False) == True and anyOfAKind(cards, 2, False) != ThreeCards:
-#			return Value3OfAKind
-
+def fullHouse(cards):
+	if twoOfAKind(cards):
+		return threeOfAKind(cards)
+	
 
 def anyOfAKind(cards, desiredSize, reverse):
 	cardCount = [0]*15
@@ -70,10 +62,12 @@ def threeOfAKind(cards):
 			
 def fourOfAKind(cards):
 	return anyOfAKind(cards, 4, False)
-		
+
+# Anti-corruption layer (Abstractions)
+
 def cardNumber(card): 
 	firstCharacter = card[0]
-	if(firstCharacter == "T"):
+	if(firstCharacter == "1"):
 		return 10
 	elif (firstCharacter == "J"):
 		return 11
@@ -85,7 +79,8 @@ def cardNumber(card):
 		return 14
 	return int(firstCharacter)
 
-
 def cardSuit(card):
+	if card[0] == "1":
+		return card[2]
 	return card[1]
 	
