@@ -84,3 +84,12 @@ def cardSuit(card):
 		return card[2]
 	return card[1]
 	
+	
+	
+	
+	
+# Now we gotta rank these bad boyz 
+
+
+def winner(blackEntry, whiteEntry):
+	return Black
