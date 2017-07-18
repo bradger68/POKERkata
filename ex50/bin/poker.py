@@ -89,7 +89,27 @@ def cardSuit(card):
 	
 	
 # Now we gotta rank these bad boyz 
+# Name, rank, highest card
+def identify(cards):
+	if fourOfAKind(cards):
+		rank = 2
+		return ("Four Of A Kind", rank, fourOfAKind(cards))
+	elif twoOfAKind(cards):
+		rank = 8
+		return("Two Of A Kind", rank, twoOfAKind(cards))
 
 
 def winner(blackEntry, whiteEntry):
-	return Black
+	blackHand = identify(blackEntry)
+	whiteHand = identify(whiteEntry)
+	if blackHand[1] < whiteHand[1]:
+		return "Black"
+	elif blackHand[1] > whiteHand[1]:
+		return "White"
+	elif blackHand[1] == whiteHand[1]:
+		if blackHand[2] > whiteHand[2]:
+			return "Black"
+		elif blackHand[2] < whiteHand[2]:
+			return "White"
+		else:
+			return "Tie"

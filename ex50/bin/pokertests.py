@@ -1,5 +1,6 @@
 from assertions import printErrors, assertEqual
-from poker import cardNumber, cardSuit, highestCard, twoOfAKind, threeOfAKind, fourOfAKind, twoPair, straight, flush, straightFlush, fullHouse, winner
+#from poker import cardNumber, cardSuit, highestCard, twoOfAKind, threeOfAKind, fourOfAKind, twoPair, straight, flush, straightFlush, fullHouse, winner, identify
+from poker import *
 # Red -> Green -> Refactor
 assertEqual(2, cardNumber("2H"))
 assertEqual(3, cardNumber("3H"))
@@ -51,7 +52,19 @@ assertEqual(None, fullHouse(["3S", "3D", "JH", "2S", "2C"]))
 assertEqual(None, fullHouse(["3S", "3D", "3H", "KS", "2C"])) 
 assertEqual(None, fullHouse(["3S", "3D", "3H", "3S", "2C"]))
 
-#Black has a full house, white has a two pair
-assertEqual(Black, winner(["3S", "3D", "3H", "3S", "2C"], ["3H", "3S", "AH", "5H", "6H"]))
+# Black, White
+ATwoOfAKind = ["3H", "3S", "AH", "5H", "6H"]
+BetterTwoOfAKind = ["9H", "9S", "AH", "5H", "6H"]
+AFourOfAKind = ["3S", "3D", "3H", "3S", "2C"]
+assertEqual("Black", winner(AFourOfAKind, ATwoOfAKind))
+assertEqual("White", winner(ATwoOfAKind, AFourOfAKind))
+assertEqual("Black", winner(BetterTwoOfAKind, ATwoOfAKind))
+assertEqual("White", winner(ATwoOfAKind, BetterTwoOfAKind))
+assertEqual("Tie", winner(ATwoOfAKind, ATwoOfAKind))
+
+assertEqual(("Four Of A Kind", 2, 3), identify(AFourOfAKind))
+assertEqual(("Two Of A Kind", 8, 3), identify(ATwoOfAKind))
+
+
 
 printErrors()
