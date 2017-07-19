@@ -84,19 +84,39 @@ def cardSuit(card):
 		return card[2]
 	return card[1]
 	
-	
-	
-	
+
 	
 # Now we gotta rank these bad boyz 
+
 # Name, rank, highest card
 def identify(cards):
-	if fourOfAKind(cards):
+	if straightFlush(cards):
+		rank = 1
+		return ("Straight Flush", rank, straightFlush(cards))
+	elif fourOfAKind(cards):
 		rank = 2
 		return ("Four Of A Kind", rank, fourOfAKind(cards))
+	elif fullHouse(cards):
+		rank = 3
+		return ("Full House", rank, fullHouse(cards))
+	elif flush(cards):
+		rank = 4
+		return ("Flush", rank, flush(cards))
+	elif straight(cards):
+		rank = 5
+		return ("Straight", rank, straight(cards))
+	elif threeOfAKind(cards):
+		rank = 6
+		return ("Three Of A Kind", rank, threeOfAKind(cards))
+	elif twoPair(cards):
+		rank = 7
+		return ("Two Pair", rank, twoPair(cards))
 	elif twoOfAKind(cards):
 		rank = 8
 		return("Two Of A Kind", rank, twoOfAKind(cards))
+	elif highestCard(cards):
+		rank = 9
+		return ("Highest Card", rank, highestCard(cards))
 
 
 def winner(blackEntry, whiteEntry):
